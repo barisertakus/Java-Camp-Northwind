@@ -1,11 +1,11 @@
 package com.bariserta.northwind.api.controllers;
 
 import com.bariserta.northwind.business.abstracts.ProductService;
+import com.bariserta.northwind.core.utilites.results.DataResult;
+import com.bariserta.northwind.core.utilites.results.Result;
 import com.bariserta.northwind.entities.concretes.Product;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,7 +21,12 @@ public class ProductsController {
     }
 
     @GetMapping("/getall")
-    public List<Product> getAll(){
+    public DataResult<List<Product>> getAll(){
         return productService.getAll();
+    }
+
+    @PostMapping("/add")
+    public Result add(@RequestBody Product product){
+        return this.productService.add(product);
     }
 }
