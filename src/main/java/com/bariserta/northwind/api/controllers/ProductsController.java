@@ -29,4 +29,30 @@ public class ProductsController {
     public Result add(@RequestBody Product product){
         return this.productService.add(product);
     }
+
+    @GetMapping("/getByProductName")
+    public DataResult<Product> getByProductName(@RequestParam String productName){
+        return productService.getByProductName(productName);
+    }
+
+    @GetMapping("/getByProductNameAndCategoryCategoryId")
+    public DataResult<Product> getByProductNameAndCategoryCategoryId(@RequestParam String productName, @RequestParam int categoryId){
+        return productService.getByProductNameAndCategoryCategoryId(productName,categoryId);
+    }
+
+    @GetMapping("/getByProductNameContains")
+    public DataResult<List<Product>> getByProductNameContains(@RequestParam String productName){
+        return productService.getByProductNameContains(productName);
+    }
+
+    @GetMapping("/getAllByPage")
+    public DataResult<List<Product>> getAll(@RequestParam int pageNo,@RequestParam int pageSize){
+        return productService.getAll(pageNo,pageSize);
+    }
+
+    @GetMapping("/getAllDesc")
+    public DataResult<List<Product>> getAllSortedByProductName() {
+        return productService.getAllSortedByProductName();
+    }
+
 }
