@@ -4,6 +4,7 @@ import com.bariserta.northwind.business.abstracts.ProductService;
 import com.bariserta.northwind.core.utilites.results.DataResult;
 import com.bariserta.northwind.core.utilites.results.Result;
 import com.bariserta.northwind.entities.concretes.Product;
+import com.bariserta.northwind.entities.dtos.ProductWithCategoryDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +24,11 @@ public class ProductsController {
     @GetMapping("/getall")
     public DataResult<List<Product>> getAll(){
         return productService.getAll();
+    }
+
+    @GetMapping("/getProductWithCategoryDetails")
+    public DataResult<List<ProductWithCategoryDTO>> getProductWithCategoryDetails() {
+        return productService.getProductWithCategoryDetails();
     }
 
     @PostMapping("/add")

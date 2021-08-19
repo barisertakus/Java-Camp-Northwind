@@ -7,6 +7,7 @@ import com.bariserta.northwind.core.utilites.results.SuccessDataResult;
 import com.bariserta.northwind.core.utilites.results.SuccessResult;
 import com.bariserta.northwind.dataAccess.abstracts.ProductDao;
 import com.bariserta.northwind.entities.concretes.Product;
+import com.bariserta.northwind.entities.dtos.ProductWithCategoryDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -95,7 +96,6 @@ public class ProductManager implements ProductService {
         );
     }
 
-
     @Override
     public DataResult<List<Product>> getAll(int pageNo, int pageSize) {
 
@@ -112,6 +112,15 @@ public class ProductManager implements ProductService {
         Sort sort = Sort.by(Sort.Direction.DESC,"productName");
         return new SuccessDataResult<List<Product>>(
                 productDao.findAll(sort),
+                "Data listed."
+        );
+    }
+
+
+    @Override
+    public DataResult<List<ProductWithCategoryDTO>> getProductWithCategoryDetails() {
+        return new SuccessDataResult<List<ProductWithCategoryDTO>>(
+                productDao.getProductWithCategoryDetails(),
                 "Data listed."
         );
     }
